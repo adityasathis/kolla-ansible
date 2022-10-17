@@ -112,6 +112,7 @@ openstack_projects = [
     'oslotest',
     'swift',
     'watcher',
+    'networking-onos',
 ]
 
 # Global variables

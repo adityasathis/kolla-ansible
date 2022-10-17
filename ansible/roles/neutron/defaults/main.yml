@@ -579,6 +579,8 @@ neutron_l3_agent_host_ipv6_neigh_gc_thresh3: "{{ neutron_l3_agent_host_ipv4_neig
 neutron_subprojects:
   - name: "networking-sfc"
     enabled: "{{ enable_neutron_sfc | bool }}"
+  - name: "networking-onos"
+    enabled: "{{ enable_neutron_onos | bool }}"
   - name: "neutron-dynamic-routing"
     enabled: "{{ enable_neutron_bgp_dragent | bool }}"
   - name: "neutron-vpnaas"
@@ -604,6 +606,8 @@ mechanism_drivers:
     enabled: "{{ neutron_plugin_agent == 'ovn' }}"
   - name: "sriovnicswitch"
     enabled: "{{ enable_neutron_sriov | bool }}"
+  - name: "onos_ml2"
+    enabled: "{{ enable_neutron_onos | bool }}"
 
 neutron_mechanism_drivers: "{{ mechanism_drivers | selectattr('enabled', 'equalto', true) | list }}"
 
@@ -619,6 +623,8 @@ extension_drivers:
     enabled: "{{ enable_designate | bool }}"
   - name: "sfc"
     enabled: "{{ enable_neutron_sfc | bool }}"
+  - name: "onos"
+    enabled: "{{ enable_neutron_onos | bool }}"
 
 neutron_extension_drivers: "{{ extension_drivers | selectattr('enabled', 'equalto', true) | list }}"
 
@@ -651,6 +657,8 @@ service_plugins:
     enabled: "{{ enable_neutron_segments | bool }}"
   - name: "sfc"
     enabled: "{{ enable_neutron_sfc | bool }}"
+  - name: "onos_router"
+    enabled: "{{ enable_neutron_onos | bool }}"
   - name: "trunk"
     enabled: "{{ enable_neutron_trunk | bool }}"
   - name: "vpnaas"
