@@ -54,10 +54,10 @@ if [[ "${OS_USERNAME}" == "" ]]; then
 fi
 
 # Test to ensure configure script is run only once
-if $KOLLA_OPENSTACK_COMMAND image list | grep -q cirros; then
-    echo "This tool should only be run once per deployment."
-    exit
-fi
+#if $KOLLA_OPENSTACK_COMMAND image list | grep -q cirros; then
+#    echo "This tool should only be run once per deployment."
+#    exit
+#fi
 
 echo Checking for locally available cirros image.
 # Let's first try to see if the image is available locally
@@ -73,8 +73,8 @@ else
 fi
 
 echo Creating glance image.
-$KOLLA_OPENSTACK_COMMAND image create --disk-format qcow2 --container-format bare --public \
-    --property os_type=${IMAGE_TYPE} --file ${IMAGE_PATH}/${IMAGE} ${IMAGE_NAME}
+#$KOLLA_OPENSTACK_COMMAND image create --disk-format qcow2 --container-format bare --public \
+#    --property os_type=${IMAGE_TYPE} --file ${IMAGE_PATH}/${IMAGE} ${IMAGE_NAME}
 
 echo Configuring neutron.
 

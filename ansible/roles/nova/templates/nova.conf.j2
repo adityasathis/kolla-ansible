@@ -1,7 +1,11 @@
 # nova.conf
 [DEFAULT]
 debug = {{ nova_logging_debug }}
-
+{% if enable_neutron_onos | bool %}
+force_config_drive = True
+network_api_class = nova.network.neutronv2.api.API
+security_group_api = neutron
+{% endif %}
 {% if service_name == "nova-super-conductor" %}
 log_file = /var/log/kolla/nova/nova-super-conductor.log
 {% elif service_name == "nova-api"  %}

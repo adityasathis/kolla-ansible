@@ -623,8 +623,6 @@ extension_drivers:
     enabled: "{{ enable_designate | bool }}"
   - name: "sfc"
     enabled: "{{ enable_neutron_sfc | bool }}"
-  - name: "onos"
-    enabled: "{{ enable_neutron_onos | bool }}"
 
 neutron_extension_drivers: "{{ extension_drivers | selectattr('enabled', 'equalto', true) | list }}"
 

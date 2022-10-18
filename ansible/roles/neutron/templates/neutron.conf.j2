@@ -27,7 +27,7 @@ rpc_state_report_workers = {{ openstack_service_rpc_workers }}
 # in it is because we are sharing this socket in a volume which is it's own dir
 metadata_proxy_socket = /var/lib/neutron/kolla/metadata_proxy
 
-{% if neutron_plugin_agent == "openvswitch" or (neutron_plugin_agent == "ovn" and neutron_ovn_dhcp_agent | bool) or (neutron_plugin_agent == 'onos') %}
+{% if neutron_plugin_agent == "openvswitch" or (neutron_plugin_agent == "ovn" and neutron_ovn_dhcp_agent | bool) %}
 interface_driver = openvswitch
 {% elif neutron_plugin_agent == "linuxbridge" %}
 interface_driver = linuxbridge
@@ -50,7 +50,7 @@ core_plugin = vmware_nsx.plugin.NsxPolicyPlugin
 dhcp_agent_notification = False
 {% elif neutron_plugin_agent == 'vmware_dvs' %}
 core_plugin = vmware_nsx.plugin.NsxDvsPlugin
-{% elif neutron_plugin_agent == 'onos' %}
+{% elif enable_neutron_onos | bool %}
 core_plugin = ml2
 service_plugins = onos_router
 dhcp_agent_notification = False
@@ -163,7 +163,7 @@ drivers = ovs
 
 {% if enable_neutron_onos | bool %}
 [onos]
-url_path = http://10.0.0.100:8181/onos/openstacknetworking
+url_path = http://10.1.0.100:8181/onos/openstacknetworking
 username = onos
 # # (StrOpt) Password for authentication. This is a mandatory field.
 password = rocks
